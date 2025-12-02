@@ -21,12 +21,12 @@ public class StartState implements GameState {
 
     @Override
     public void onStateExecution() {
-        ctx.scanner.nextLine(); // wait for Enter
+        ctx.scanner.nextLine();
         fsm.changeState(new PickWordState(ctx, fsm));
     }
 
     @Override
     public void onStateExit() {
-        // nothing special
+
     }
 }
