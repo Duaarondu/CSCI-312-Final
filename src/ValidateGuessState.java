@@ -20,19 +20,18 @@ public class ValidateGuessState implements GameState {
     public void onStateExecution() {
         String guess = ctx.currentGuess;
 
-        if (guess.length() != 5) {
-            System.out.println("Invalid guess. Please enter exactly 5 letters.");
+        if (guess == null || guess.length() != 5) {
+            System.out.println("Invalid guess. Must be exactly 5 letters.");
             fsm.changeState(new WaitForGuessState(ctx, fsm));
             return;
         }
 
-        if (!ctx.dictionary.contains(guess)) {
-            System.out.println("Word not in dictionary. Try again.");
+        if (!ctx.isValidWord(guess)) {
+            System.out.println("Invalid guess. Not in dictionary.");
             fsm.changeState(new WaitForGuessState(ctx, fsm));
-            return;
+        } else {
+            fsm.changeState(new EvaluateGuessState(ctx, fsm));
         }
-
-        fsm.changeState(new EvaluateGuessState(ctx, fsm));
     }
 
     @Override
