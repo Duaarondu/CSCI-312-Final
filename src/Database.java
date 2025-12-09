@@ -1,8 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-
-
 class Database {
     public static Connection connection;
 
